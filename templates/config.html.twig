@@ -1,0 +1,305 @@
+{#
+ # -------------------------------------------------------------------------
+ # Custom Branding — plugin de personalização de marca para o GLPI 12
+ # @author  F4tjs <https://github.com/f4tjs>
+ # @license GPL-3.0-or-later
+ # -------------------------------------------------------------------------
+ #
+ # Tela de configuração. Layout responsivo (Bootstrap/Tabler do GLPI):
+ #  - celular/tablet: formulário e prévia empilhados;
+ #  - desktop (≥ 1200 px): formulário à esquerda, prévia fixa à direita.
+ #
+ # Os dados vêm de ConfigViewModel; o comportamento (validação imediata e
+ # prévia ao vivo) fica em public/js/config.js.
+ #}
+{% extends 'layout/page_without_tabs.html.twig' %}
+
+{% set container_size = 'fluid' %}
+
+{% block content_title %}
+    <i class="ti ti-palette me-2" aria-hidden="true"></i>{{ __('Custom Branding', 'custombranding') }}
+{% endblock %}
+
+{% block content_body %}
+<link rel="stylesheet" href="{{ path('plugins/custombranding/css/config.css') }}">
+
+<form method="post" action="{{ action }}" enctype="multipart/form-data"
+      id="cb-form" class="cb-config" data-cb-config="{{ js_data|json_encode }}" novalidate>
+    {# "save" sempre presente: Enter num campo de texto salva (nunca restaura). #}
+    <input type="hidden" name="save" value="1">
+    <input type="hidden" name="reset_all" value="0" id="cb-reset-flag">
+
+    <div class="alert alert-info d-flex gap-2 align-items-start" role="note">
+        <i class="ti ti-info-circle fs-2" aria-hidden="true"></i>
+        <div>
+            {{ __('Images keep their original quality (they are not resized or recompressed). Each field shows the recommended, minimum and maximum size; files are checked as soon as they are selected.', 'custombranding') }}
+            <div class="small text-secondary mt-1">
+                {{ __('Server limits:', 'custombranding') }}
+                {{ __('per file', 'custombranding') }} <strong>{{ limits.max_upload }}</strong> ·
+                {{ __('per save (all files together)', 'custombranding') }} <strong>{{ limits.max_post }}</strong>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-3">
+        {# ============================ FORMULÁRIO ============================ #}
+        <div class="col-12 col-xl-7 col-xxl-8">
+
+            {# ---- Identidade ---- #}
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="ti ti-id me-2" aria-hidden="true"></i>{{ __('Identity', 'custombranding') }}</h2>
+                </div>
+                <div class="card-body row g-3">
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="cb-app-name">{{ __('Application name', 'custombranding') }}</label>
+                        <input type="text" class="form-control" id="cb-app-name" name="app_name"
+                               value="{{ config.appName }}" maxlength="{{ max.app_name }}" placeholder="GLPI"
+                               data-cb-preview="app_name">
+                        <div class="form-hint">{{ __('Browser tab title, e-mail notification footer and two-factor authentication label. Empty = "GLPI".', 'custombranding') }}</div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <label class="form-label" for="cb-login-footer">{{ __('Login screen note', 'custombranding') }}</label>
+                        <input type="text" class="form-control" id="cb-login-footer" name="login_footer"
+                               value="{{ config.loginFooter }}" maxlength="{{ max.login_footer }}"
+                               placeholder="{{ __('e.g. IT Service Desk — ext. 1234', 'custombranding') }}"
+                               data-cb-preview="login_footer">
+                        <div class="form-hint">{{ __('Short plain text shown below the login button (support contact, notice...).', 'custombranding') }}</div>
+                    </div>
+                </div>
+            </div>
+
+            {# ---- Imagens (um cartão por grupo) ---- #}
+            {% for group in groups %}
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h2 class="card-title"><i class="ti {{ group.icon }} me-2" aria-hidden="true"></i>{{ group.title }}</h2>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        {% for slot in group.slots %}
+                            {{ _self.slot_field(slot) }}
+                        {% endfor %}
+                    </div>
+
+                    {% if loop.index == 2 %}
+                        {# Escurecimento do fundo: legibilidade sobre fotos claras #}
+                        <div class="card-footer">
+                            <label class="form-label d-flex justify-content-between" for="cb-overlay">
+                                <span>{{ __('Background darkening', 'custombranding') }}</span>
+                                <output id="cb-overlay-value" for="cb-overlay">{{ config.loginOverlay }}%</output>
+                            </label>
+                            <input type="range" class="form-range" id="cb-overlay" name="login_overlay"
+                                   min="0" max="{{ max.overlay }}" step="5" value="{{ config.loginOverlay }}"
+                                   data-cb-preview="overlay">
+                            <div class="form-hint">{{ __('Improves the readability of texts over light photos.', 'custombranding') }}</div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            {# ---- Cores ---- #}
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="ti ti-color-swatch me-2" aria-hidden="true"></i>{{ __('Colors', 'custombranding') }}</h2>
+                    <div class="card-actions">
+                        <label class="form-check form-switch m-0">
+                            <input class="form-check-input" type="checkbox" name="colors_enabled" value="1"
+                                   id="cb-colors-enabled" {{ config.colorsEnabled ? 'checked' }} data-cb-preview="colors">
+                            <span class="form-check-label">{{ __('Apply brand colors', 'custombranding') }}</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row g-3" id="cb-colors">
+                        {% for field in [
+                            {name: 'primary_color', label: __('Primary color (buttons, links)', 'custombranding'), value: config.primaryColor},
+                            {name: 'menu_bg_color', label: __('Menu background', 'custombranding'), value: config.menuBgColor},
+                            {name: 'menu_fg_color', label: __('Menu text', 'custombranding'), value: config.menuFgColor},
+                        ] %}
+                            <div class="col-12 col-sm-4">
+                                <label class="form-label" for="cb-{{ field.name }}">{{ field.label }}</label>
+                                <div class="input-group">
+                                    <input type="color" class="form-control form-control-color" id="cb-{{ field.name }}"
+                                           name="{{ field.name }}" value="{{ field.value }}" data-cb-preview="colors">
+                                    <span class="input-group-text font-monospace" data-cb-color-label="{{ field.name }}">{{ field.value }}</span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="small mt-2" id="cb-contrast" aria-live="polite"></div>
+                    <div class="form-hint mt-2">{{ __('Overrides the colors of every GLPI palette. Disable to let each user keep the palette chosen in their preferences.', 'custombranding') }}</div>
+                </div>
+            </div>
+        </div>
+
+        {# ============================== PRÉVIA ============================== #}
+        <div class="col-12 col-xl-5 col-xxl-4">
+            <div class="card cb-preview-card">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="ti ti-eye me-2" aria-hidden="true"></i>{{ __('Preview', 'custombranding') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-pills nav-fill flex-wrap gap-1 mb-3" role="tablist">
+                        {% for tab in [
+                            {id: 'login', icon: 'ti-device-desktop', label: __('Login', 'custombranding')},
+                            {id: 'mobile', icon: 'ti-device-mobile', label: __('Mobile', 'custombranding')},
+                            {id: 'menu', icon: 'ti-layout-sidebar', label: __('Menu', 'custombranding')},
+                            {id: 'tab', icon: 'ti-browser', label: __('Tab', 'custombranding')},
+                        ] %}
+                            <li class="nav-item" role="presentation">
+                                <button type="button" class="nav-link {{ loop.first ? 'active' }}" data-bs-toggle="tab"
+                                        data-bs-target="#cb-pv-{{ tab.id }}" role="tab"
+                                        aria-controls="cb-pv-{{ tab.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}">
+                                    <i class="ti {{ tab.icon }} me-1" aria-hidden="true"></i>{{ tab.label }}
+                                </button>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="tab-content">
+                        {# Login — telas grandes #}
+                        <div class="tab-pane active show" id="cb-pv-login" role="tabpanel">
+                            <div class="cb-screen cb-screen--desktop" data-cb-login="desktop">
+                                <div class="cb-login">
+                                    <span class="cb-login__logo" data-cb-img="logo_login"></span>
+                                    <div class="cb-login__card">
+                                        <div class="cb-line cb-line--title"></div>
+                                        <div class="cb-line"></div><div class="cb-line"></div>
+                                        <div class="cb-btn"></div>
+                                        <div class="cb-login__note" data-cb-text="login_footer"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="small text-secondary mt-2 mb-0">{{ __('Full HD / large monitors (16:9). The background is cropped to cover the screen.', 'custombranding') }}</p>
+                        </div>
+
+                        {# Login — celular #}
+                        <div class="tab-pane" id="cb-pv-mobile" role="tabpanel">
+                            <div class="cb-phone">
+                                <div class="cb-screen cb-screen--mobile" data-cb-login="mobile">
+                                    <div class="cb-login">
+                                        <span class="cb-login__logo" data-cb-img="logo_login"></span>
+                                        <div class="cb-login__card">
+                                            <div class="cb-line cb-line--title"></div>
+                                            <div class="cb-line"></div><div class="cb-line"></div>
+                                            <div class="cb-btn"></div>
+                                            <div class="cb-login__note" data-cb-text="login_footer"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="small text-secondary mt-2 mb-0 text-center">{{ __('Phone in portrait. Uses the mobile background when provided.', 'custombranding') }}</p>
+                        </div>
+
+                        {# Menu lateral expandido e recolhido #}
+                        <div class="tab-pane" id="cb-pv-menu" role="tabpanel">
+                            <div class="cb-app">
+                                <aside class="cb-app__menu">
+                                    <span class="cb-app__logo" data-cb-img="logo_menu"></span>
+                                    {% for i in 1..5 %}<div class="cb-app__item"></div>{% endfor %}
+                                </aside>
+                                <aside class="cb-app__menu cb-app__menu--reduced">
+                                    <span class="cb-app__logo cb-app__logo--reduced" data-cb-img="logo_menu_reduced"></span>
+                                    {% for i in 1..5 %}<div class="cb-app__item"></div>{% endfor %}
+                                </aside>
+                                <main class="cb-app__main">
+                                    <div class="cb-line cb-line--title"></div>
+                                    <div class="cb-line"></div><div class="cb-line"></div>
+                                    <div class="cb-btn"></div>
+                                </main>
+                            </div>
+                            <p class="small text-secondary mt-2 mb-0">{{ __('Left: expanded menu. Middle: collapsed menu. Colors apply only when enabled.', 'custombranding') }}</p>
+                        </div>
+
+                        {# Aba do navegador #}
+                        <div class="tab-pane" id="cb-pv-tab" role="tabpanel">
+                            <div class="cb-browser">
+                                <div class="cb-browser__tab">
+                                    <img class="cb-browser__icon" data-cb-img-src="favicon" alt="">
+                                    <span class="cb-browser__title">{{ __('Home', 'custombranding') }} - <span data-cb-text="app_name"></span></span>
+                                </div>
+                                <div class="cb-browser__bar"></div>
+                            </div>
+                            <div class="d-flex align-items-center gap-3 mt-3">
+                                <img class="cb-touch-icon" data-cb-img-src="favicon" alt="">
+                                <span class="small text-secondary">{{ __('Home screen shortcut (phones/tablets).', 'custombranding') }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {# Barra de ações fixa no rodapé (sempre visível, inclusive no celular) #}
+    <div class="cb-actions">
+        <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center">
+            <button type="button" class="btn btn-outline-danger" id="cb-reset"
+                    data-cb-confirm="{{ __('Remove ALL customizations and restore the GLPI default look?', 'custombranding') }}">
+                <i class="ti ti-restore me-1" aria-hidden="true"></i>{{ __('Restore defaults', 'custombranding') }}
+            </button>
+            <div class="d-flex align-items-center gap-3">
+                <span class="small text-warning d-none" id="cb-dirty"><i class="ti ti-point-filled" aria-hidden="true"></i>{{ __('Unsaved changes', 'custombranding') }}</span>
+                <button type="submit" class="btn btn-primary" id="cb-save">
+                    <i class="ti ti-device-floppy me-1" aria-hidden="true"></i>{{ __('Save', 'custombranding') }}
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script src="{{ path('plugins/custombranding/js/config.js') }}"></script>
+{% endblock %}
+
+{#
+ # Campo de upload de um slot: miniatura (atual/nova), especificações,
+ # seletor de arquivo, diagnóstico de compatibilidade e opção de remover.
+ #}
+{% macro slot_field(slot) %}
+    <div class="list-group-item cb-slot" data-cb-slot="{{ slot.key }}">
+        <div class="row g-3 align-items-start">
+            <div class="col-12 col-sm-auto">
+                <div class="cb-thumb {{ slot.is_photo ? 'cb-thumb--photo' }} {{ slot.on_menu ? 'cb-thumb--menu' }}">
+                    {% if slot.current %}
+                        <img src="{{ slot.current.url }}" alt="{{ slot.label }}" data-cb-thumb>
+                    {% else %}
+                        <img alt="" data-cb-thumb hidden>
+                        <span class="cb-thumb__empty" data-cb-thumb-empty>{{ __('GLPI default', 'custombranding') }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col">
+                <h3 class="h4 mb-1"><i class="ti {{ slot.icon }} me-1" aria-hidden="true"></i>{{ slot.label }}</h3>
+                <p class="text-secondary small mb-2">{{ slot.help }}</p>
+
+                <dl class="cb-specs mb-2">
+                    {% for spec in slot.specs %}
+                        <div class="{{ spec.strong ?? false ? 'cb-specs__item--strong' }}">
+                            <dt>{{ spec.label }}</dt><dd>{{ spec.value }}</dd>
+                        </div>
+                    {% endfor %}
+                </dl>
+
+                {% if slot.current %}
+                    <div class="small text-secondary mb-2" data-cb-current>
+                        <i class="ti ti-check text-success" aria-hidden="true"></i>
+                        {{ __('Current:', 'custombranding') }} {{ slot.current.dimensions }} · {{ slot.current.size }} · {{ slot.current.format }}
+                    </div>
+                {% endif %}
+
+                <div class="d-flex flex-wrap gap-2 align-items-center">
+                    <input type="file" class="form-control cb-file" name="image_{{ slot.key }}" id="cb-file-{{ slot.key }}"
+                           accept="{{ slot.accept }}" aria-describedby="cb-status-{{ slot.key }}">
+                    {% if slot.current %}
+                        <label class="form-check m-0">
+                            <input type="checkbox" class="form-check-input" name="remove_{{ slot.key }}" value="1" data-cb-remove>
+                            <span class="form-check-label">{{ __('Remove (use GLPI default)', 'custombranding') }}</span>
+                        </label>
+                    {% endif %}
+                </div>
+
+                <div class="cb-status mt-2" id="cb-status-{{ slot.key }}" aria-live="polite"></div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

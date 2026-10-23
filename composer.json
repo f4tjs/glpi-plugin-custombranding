@@ -1,0 +1,45 @@
+{
+    "name": "f4tjs/glpi-plugin-custombranding",
+    "description": "GLPI 12 plugin to customize branding: logos, favicon, login background (desktop and mobile), brand colors and application name — secure, responsive and with live preview.",
+    "type": "glpi-plugin",
+    "license": "GPL-3.0-or-later",
+    "keywords": [
+        "glpi", "glpi-plugin", "glpi12", "branding", "white-label",
+        "theme", "logo", "favicon", "login", "itsm", "helpdesk"
+    ],
+    "homepage": "https://github.com/f4tjs/glpi-plugin-custombranding",
+    "support": {
+        "issues": "https://github.com/f4tjs/glpi-plugin-custombranding/issues",
+        "source": "https://github.com/f4tjs/glpi-plugin-custombranding"
+    },
+    "authors": [
+        {
+            "name": "F4tjs",
+            "homepage": "https://github.com/f4tjs",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.3",
+        "ext-fileinfo": "*"
+    },
+    "suggest": {
+        "ext-exif": "Correct validation of rotated phone photos (EXIF Orientation)"
+    },
+    "autoload": {
+        "psr-4": { "GlpiPlugin\\Custombranding\\": "src/" }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "platform": { "php": "8.3.0" }
+    },
+    "scripts": {
+        "analyse": "phpstan analyse",
+        "locales": [
+            "python3 tools/extract_locales.py",
+            "msgmerge --update --backup=none locales/pt_BR.po locales/custombranding.pot",
+            "msgfmt --check -o locales/pt_BR.mo locales/pt_BR.po"
+        ],
+        "build": "sh tools/build_release.sh"
+    }
+}

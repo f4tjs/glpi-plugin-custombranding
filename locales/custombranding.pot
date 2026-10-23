@@ -1,0 +1,383 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: custombranding\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Controller/ConfigController.php:71
+#, php-format
+msgid "The images sent together exceed the server limit (%s). Send fewer images at a time."
+msgstr ""
+
+#: src/Controller/ConfigController.php:86
+msgid "Invalid request: nothing was changed."
+msgstr ""
+
+#: src/Controller/ConfigController.php:101
+msgid "Low contrast between menu background and text colors: the menu may be hard to read."
+msgstr ""
+
+#: src/Controller/ConfigController.php:109
+msgid "Settings saved, except for the images listed above."
+msgstr ""
+
+#: src/Controller/ConfigController.php:110
+msgid "Settings saved. Reload other open GLPI tabs to see the changes."
+msgstr ""
+
+#: src/Controller/ConfigController.php:142
+msgid "Could not save the file on the server. Check permissions of the files/_plugins directory."
+msgstr ""
+
+#: src/Controller/ConfigController.php:167
+msgid "All customizations were removed. GLPI default look restored."
+msgstr ""
+
+#: src/Image/ImageSlot.php:113
+msgid "Login page logo"
+msgstr ""
+
+#: src/Image/ImageSlot.php:114
+msgid "Side menu logo (expanded)"
+msgstr ""
+
+#: src/Image/ImageSlot.php:115
+msgid "Side menu logo (collapsed)"
+msgstr ""
+
+#: src/Image/ImageSlot.php:116
+msgid "Browser tab icon (favicon)"
+msgstr ""
+
+#: src/Image/ImageSlot.php:117
+msgid "Login background (desktop / large screens)"
+msgstr ""
+
+#: src/Image/ImageSlot.php:118
+msgid "Login background (mobile / portrait)"
+msgstr ""
+
+#: src/Image/ImageSlot.php:126
+msgid "Shown above the login card. Scaled to fit without distortion. Prefer PNG/WebP with transparent background."
+msgstr ""
+
+#: src/Image/ImageSlot.php:130
+msgid "Shown at the top of the side menu, over the menu color. Use a light version of the logo for dark menus."
+msgstr ""
+
+#: src/Image/ImageSlot.php:134
+msgid "Shown when the side menu is collapsed. Use a square symbol (icon) of the brand."
+msgstr ""
+
+#: src/Image/ImageSlot.php:138
+msgid "Icon of the browser tab, bookmarks and home screen shortcuts. Square PNG."
+msgstr ""
+
+#: src/Image/ImageSlot.php:142
+msgid "Fills the whole login screen (cropped to cover, centered). Full HD (1920×1080) or higher is recommended."
+msgstr ""
+
+#: src/Image/ImageSlot.php:146
+msgid "Optional. Used on phones held in portrait. If empty, the desktop background is cropped automatically."
+msgstr ""
+
+#: src/Image/ImageValidator.php:48
+msgid "The file is empty."
+msgstr ""
+
+#: src/Image/ImageValidator.php:52 src/View/ConfigViewModel.php:152
+#, php-format
+msgid "File too large: %1$s (maximum %2$s)."
+msgstr ""
+
+#: src/Image/ImageValidator.php:62 src/View/ConfigViewModel.php:153
+#, php-format
+msgid "Unsupported format (%1$s). Accepted formats: %2$s."
+msgstr ""
+
+#: src/Image/ImageValidator.php:63 src/View/ConfigViewModel.php:168
+msgid "unknown"
+msgstr ""
+
+#: src/Image/ImageValidator.php:72 src/View/ConfigViewModel.php:154
+msgid "The file is not a valid image or is corrupted."
+msgstr ""
+
+#: src/Image/ImageValidator.php:112 src/View/ConfigViewModel.php:155
+#, php-format
+msgid "Image too small: %1$s. Minimum: %2$s."
+msgstr ""
+
+#: src/Image/ImageValidator.php:121 src/View/ConfigViewModel.php:156
+#, php-format
+msgid "Image too large: %1$s. Maximum: %2$s. Reduce it before uploading to keep pages fast."
+msgstr ""
+
+#: src/Image/ImageValidator.php:133 src/View/ConfigViewModel.php:157
+#, php-format
+msgid "Below the recommended size (%1$s): it may look blurry on Full HD and high-density screens."
+msgstr ""
+
+#: src/Image/ImageValidator.php:150 src/View/ConfigViewModel.php:158
+#, php-format
+msgid "The image must be square (same width and height). Received: %s."
+msgstr ""
+
+#: src/Image/ImageValidator.php:154 src/View/ConfigViewModel.php:159
+msgid "The image is not square: empty margins will appear around it."
+msgstr ""
+
+#: src/Image/ImageValidator.php:157 src/View/ConfigViewModel.php:160
+msgid "Landscape (horizontal) image expected: large parts will be cropped on wide screens."
+msgstr ""
+
+#: src/Image/ImageValidator.php:160 src/View/ConfigViewModel.php:161
+msgid "Portrait (vertical) image expected: large parts will be cropped on phones."
+msgstr ""
+
+#: src/Image/ImageValidator.php:171 src/View/ConfigViewModel.php:162
+#, php-format
+msgid "Aspect ratio differs from the ideal %s: edges will be cropped to fill the screen."
+msgstr ""
+
+#: src/Image/ImageValidator.php:182
+#, php-format
+msgid "File exceeds the server upload limit (%s)."
+msgstr ""
+
+#: src/Image/ImageValidator.php:185
+msgid "The upload was interrupted. Please try again."
+msgstr ""
+
+#: src/Image/ImageValidator.php:188
+msgid "The server could not store the uploaded file. Contact the administrator."
+msgstr ""
+
+#: src/Image/ImageValidator.php:189
+msgid "Upload failed."
+msgstr ""
+
+#: src/Menu.php:25 templates/config.html.twig:19
+msgid "Custom Branding"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:69
+msgid "Logos"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:70
+msgid "Login screen background"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:71
+msgid "Browser"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:90
+msgid "Recommended"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:91
+msgid "Minimum"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:92
+msgid "Maximum"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:93
+msgid "File size"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:93
+#, php-format
+msgid "up to %s"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:94
+msgid "Formats"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:95
+msgid "Displayed at"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:148
+msgid "Compatible"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:149
+msgid "Compatible, with warnings"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:150
+msgid "Incompatible — will not be saved"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:151
+msgid "Checking image…"
+msgstr ""
+
+#: src/View/ConfigViewModel.php:163
+#, php-format
+msgid "The selected images total %1$s, above the server limit per save (%2$s). Save in steps."
+msgstr ""
+
+#: src/View/ConfigViewModel.php:164
+#, php-format
+msgid "Low contrast (%s:1). WCAG recommends at least 4.5:1."
+msgstr ""
+
+#: src/View/ConfigViewModel.php:165
+#, php-format
+msgid "Good contrast (%s:1)."
+msgstr ""
+
+#: src/View/ConfigViewModel.php:166
+msgid "Will be removed when saving (GLPI default restored)."
+msgstr ""
+
+#: src/View/ConfigViewModel.php:167
+msgid "New image selected — not saved yet."
+msgstr ""
+
+#: templates/config.html.twig:34
+msgid "Images keep their original quality (they are not resized or recompressed). Each field shows the recommended, minimum and maximum size; files are checked as soon as they are selected."
+msgstr ""
+
+#: templates/config.html.twig:36
+msgid "Server limits:"
+msgstr ""
+
+#: templates/config.html.twig:37
+msgid "per file"
+msgstr ""
+
+#: templates/config.html.twig:38
+msgid "per save (all files together)"
+msgstr ""
+
+#: templates/config.html.twig:50
+msgid "Identity"
+msgstr ""
+
+#: templates/config.html.twig:54
+msgid "Application name"
+msgstr ""
+
+#: templates/config.html.twig:58
+msgid "Browser tab title, e-mail notification footer and two-factor authentication label. Empty = \"GLPI\"."
+msgstr ""
+
+#: templates/config.html.twig:61
+msgid "Login screen note"
+msgstr ""
+
+#: templates/config.html.twig:64
+msgid "e.g. IT Service Desk — ext. 1234"
+msgstr ""
+
+#: templates/config.html.twig:66
+msgid "Short plain text shown below the login button (support contact, notice...)."
+msgstr ""
+
+#: templates/config.html.twig:87
+msgid "Background darkening"
+msgstr ""
+
+#: templates/config.html.twig:93
+msgid "Improves the readability of texts over light photos."
+msgstr ""
+
+#: templates/config.html.twig:102
+msgid "Colors"
+msgstr ""
+
+#: templates/config.html.twig:107
+msgid "Apply brand colors"
+msgstr ""
+
+#: templates/config.html.twig:114
+msgid "Primary color (buttons, links)"
+msgstr ""
+
+#: templates/config.html.twig:115
+msgid "Menu background"
+msgstr ""
+
+#: templates/config.html.twig:116
+msgid "Menu text"
+msgstr ""
+
+#: templates/config.html.twig:129
+msgid "Overrides the colors of every GLPI palette. Disable to let each user keep the palette chosen in their preferences."
+msgstr ""
+
+#: templates/config.html.twig:138
+msgid "Preview"
+msgstr ""
+
+#: templates/config.html.twig:143
+msgid "Login"
+msgstr ""
+
+#: templates/config.html.twig:144
+msgid "Mobile"
+msgstr ""
+
+#: templates/config.html.twig:145
+msgid "Menu"
+msgstr ""
+
+#: templates/config.html.twig:146
+msgid "Tab"
+msgstr ""
+
+#: templates/config.html.twig:172
+msgid "Full HD / large monitors (16:9). The background is cropped to cover the screen."
+msgstr ""
+
+#: templates/config.html.twig:190
+msgid "Phone in portrait. Uses the mobile background when provided."
+msgstr ""
+
+#: templates/config.html.twig:210
+msgid "Left: expanded menu. Middle: collapsed menu. Colors apply only when enabled."
+msgstr ""
+
+#: templates/config.html.twig:218
+msgid "Home"
+msgstr ""
+
+#: templates/config.html.twig:224
+msgid "Home screen shortcut (phones/tablets)."
+msgstr ""
+
+#: templates/config.html.twig:237
+msgid "Remove ALL customizations and restore the GLPI default look?"
+msgstr ""
+
+#: templates/config.html.twig:238
+msgid "Restore defaults"
+msgstr ""
+
+#: templates/config.html.twig:241
+msgid "Unsaved changes"
+msgstr ""
+
+#: templates/config.html.twig:243
+msgid "Save"
+msgstr ""
+
+#: templates/config.html.twig:266
+msgid "GLPI default"
+msgstr ""
+
+#: templates/config.html.twig:285
+msgid "Current:"
+msgstr ""
+
+#: templates/config.html.twig:295
+msgid "Remove (use GLPI default)"
+msgstr ""

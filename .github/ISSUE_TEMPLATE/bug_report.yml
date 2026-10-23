@@ -1,0 +1,41 @@
+name: Bug report / Relatar problema
+description: Algo não funciona como esperado. / Something is not working.
+labels: [bug]
+body:
+  - type: input
+    id: glpi
+    attributes:
+      label: Versão do GLPI / GLPI version
+      placeholder: "12.0.0"
+    validations:
+      required: true
+  - type: input
+    id: plugin
+    attributes:
+      label: Versão do plugin / Plugin version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: env
+    attributes:
+      label: Ambiente / Environment
+      options: [Docker (glpi/glpi), Apache, Nginx, Outro / Other]
+  - type: textarea
+    id: steps
+    attributes:
+      label: Como reproduzir / Steps to reproduce
+      placeholder: "1. Vá em Configurar → Personalização da marca\n2. ..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Resultado esperado e obtido / Expected vs actual
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs (files/_log/php-errors.log)
+      render: text

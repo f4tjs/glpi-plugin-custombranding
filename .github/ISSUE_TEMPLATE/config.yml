@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Vulnerabilidade de segurança / Security vulnerability
+    url: https://github.com/f4tjs/glpi-plugin-custombranding/security/advisories/new
+    about: Não abra issue pública para falhas de segurança. / Do not open public issues for security problems.

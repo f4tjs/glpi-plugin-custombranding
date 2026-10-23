@@ -1,2 +1,9 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Arquivos que não vão para o pacote de release (git archive / ZIP)
+/.gitattributes   export-ignore
+/.gitignore       export-ignore
+/phpstan.neon.dist export-ignore
+/tools            export-ignore
+/docs             export-ignore
+/.github         export-ignore
+/.editorconfig   export-ignore
+/CONTRIBUTING.md export-ignore

@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  GLPI_VERSION: "12.0.0"
+  PHPSTAN_VERSION: "2.1.17"
+
+jobs:
+  lint:
+    name: Lint (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ["8.3", "8.4"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: none
+      - name: PHP syntax
+        run: find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+      - name: composer.json
+        run: composer validate --no-check-publish --strict
+      - name: Translations
+        run: |
+          sudo apt-get install -y -qq gettext
+          for po in locales/*.po; do msgfmt --check -o /dev/null "$po"; done
+      - name: plugin.xml
+        run: python3 -c "import xml.dom.minidom as m; m.parse('plugin.xml')"
+      - name: JavaScript syntax
+        run: for f in public/js/*.js; do node --check "$f"; done
+
+  phpstan:
+    name: PHPStan (GLPI ${{ env.GLPI_VERSION }})
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download GLPI
+        run: |
+          curl -sSL -o glpi.tgz "https://github.com/glpi-project/glpi/releases/download/${GLPI_VERSION}/glpi-${GLPI_VERSION}.tgz"
+          tar xzf glpi.tgz
+      - uses: actions/checkout@v4
+        with:
+          path: glpi/plugins/custombranding
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: bcmath, intl, gd, zip, exif
+          tools: none
+      - name: Analyse
+        working-directory: glpi/plugins/custombranding
+        run: |
+          curl -sSL -o /tmp/phpstan.phar "https://github.com/phpstan/phpstan/releases/download/${PHPSTAN_VERSION}/phpstan.phar"
+          php -d memory_limit=2G /tmp/phpstan.phar analyse --no-progress

@@ -1,0 +1,474 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: custombranding\n"
+"PO-Revision-Date: 2026-10-23 12:00-0300\n"
+"Last-Translator: F4tjs <https://github.com/f4tjs>\n"
+"Language-Team: Portuguese (Brazil)\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/Controller/ConfigController.php:71
+#, php-format
+msgid ""
+"The images sent together exceed the server limit (%s). Send fewer images at "
+"a time."
+msgstr ""
+"As imagens enviadas juntas excedem o limite do servidor (%s). Envie menos "
+"imagens por vez."
+
+#: src/Controller/ConfigController.php:86
+msgid "Invalid request: nothing was changed."
+msgstr "Requisição inválida: nada foi alterado."
+
+#: src/Controller/ConfigController.php:101
+msgid ""
+"Low contrast between menu background and text colors: the menu may be hard "
+"to read."
+msgstr ""
+"Contraste baixo entre o fundo e o texto do menu: o menu pode ficar difícil "
+"de ler."
+
+#: src/Controller/ConfigController.php:109
+msgid "Settings saved, except for the images listed above."
+msgstr "Configurações salvas, exceto as imagens indicadas acima."
+
+#: src/Controller/ConfigController.php:110
+msgid "Settings saved. Reload other open GLPI tabs to see the changes."
+msgstr "Configurações salvas. Recarregue outras abas abertas do GLPI para ver as mudanças."
+"Configurações salvas. Recarregue outras abas abertas do GLPI para ver as "
+"mudanças."
+
+#: src/Controller/ConfigController.php:142
+msgid ""
+"Could not save the file on the server. Check permissions of the files/"
+"_plugins directory."
+msgstr ""
+"Não foi possível gravar o arquivo no servidor. Verifique as permissões da "
+"pasta files/_plugins."
+
+#: src/Controller/ConfigController.php:167
+msgid "All customizations were removed. GLPI default look restored."
+msgstr "Todas as personalizações foram removidas. Visual padrão do GLPI restaurado."
+"Todas as personalizações foram removidas. Visual padrão do GLPI restaurado."
+
+#: src/Image/ImageSlot.php:113
+msgid "Login page logo"
+msgstr "Logo da tela de login"
+
+#: src/Image/ImageSlot.php:114
+msgid "Side menu logo (expanded)"
+msgstr "Logo do menu lateral (expandido)"
+
+#: src/Image/ImageSlot.php:115
+msgid "Side menu logo (collapsed)"
+msgstr "Logo do menu lateral (recolhido)"
+
+#: src/Image/ImageSlot.php:116
+msgid "Browser tab icon (favicon)"
+msgstr "Ícone da aba do navegador (favicon)"
+
+#: src/Image/ImageSlot.php:117
+msgid "Login background (desktop / large screens)"
+msgstr "Fundo do login (computador / telas grandes)"
+
+#: src/Image/ImageSlot.php:118
+msgid "Login background (mobile / portrait)"
+msgstr "Fundo do login (celular / retrato)"
+
+#: src/Image/ImageSlot.php:126
+msgid ""
+"Shown above the login card. Scaled to fit without distortion. Prefer PNG/"
+"WebP with transparent background."
+msgstr ""
+"Exibido acima do cartão de login. Ajustado à área sem distorcer. Prefira PNG/"
+"WebP com fundo transparente."
+
+#: src/Image/ImageSlot.php:130
+msgid ""
+"Shown at the top of the side menu, over the menu color. Use a light version "
+"of the logo for dark menus."
+msgstr ""
+"Exibido no topo do menu lateral, sobre a cor do menu. Use uma versão clara "
+"do logo para menus escuros."
+
+#: src/Image/ImageSlot.php:134
+msgid ""
+"Shown when the side menu is collapsed. Use a square symbol (icon) of the "
+"brand."
+msgstr ""
+"Exibido quando o menu lateral está recolhido. Use o símbolo (ícone) quadrado "
+"da marca."
+
+#: src/Image/ImageSlot.php:138
+msgid ""
+"Icon of the browser tab, bookmarks and home screen shortcuts. Square PNG."
+msgstr ""
+"Ícone da aba do navegador, dos favoritos e dos atalhos na tela inicial. PNG "
+"quadrado."
+
+#: src/Image/ImageSlot.php:142
+msgid ""
+"Fills the whole login screen (cropped to cover, centered). Full HD "
+"(1920×1080) or higher is recommended."
+msgstr ""
+"Preenche toda a tela de login (recortado para cobrir, centralizado). "
+"Recomendado Full HD (1920×1080) ou maior."
+
+#: src/Image/ImageSlot.php:146
+msgid ""
+"Optional. Used on phones held in portrait. If empty, the desktop background "
+"is cropped automatically."
+msgstr ""
+"Opcional. Usado em celulares na vertical. Se vazio, o fundo de computador é "
+"recortado automaticamente."
+
+#: src/Image/ImageValidator.php:48
+msgid "The file is empty."
+msgstr "O arquivo está vazio."
+
+#: src/Image/ImageValidator.php:52 src/View/ConfigViewModel.php:152
+#, php-format
+msgid "File too large: %1$s (maximum %2$s)."
+msgstr "Arquivo muito pesado: %1$s (máximo %2$s)."
+
+#: src/Image/ImageValidator.php:62 src/View/ConfigViewModel.php:153
+#, php-format
+msgid "Unsupported format (%1$s). Accepted formats: %2$s."
+msgstr "Formato não suportado (%1$s). Formatos aceitos: %2$s."
+
+#: src/Image/ImageValidator.php:63 src/View/ConfigViewModel.php:168
+msgid "unknown"
+msgstr "desconhecido"
+
+#: src/Image/ImageValidator.php:72 src/View/ConfigViewModel.php:154
+msgid "The file is not a valid image or is corrupted."
+msgstr "O arquivo não é uma imagem válida ou está corrompido."
+
+#: src/Image/ImageValidator.php:112 src/View/ConfigViewModel.php:155
+#, php-format
+msgid "Image too small: %1$s. Minimum: %2$s."
+msgstr "Imagem pequena demais: %1$s. Mínimo: %2$s."
+
+#: src/Image/ImageValidator.php:121 src/View/ConfigViewModel.php:156
+#, php-format
+msgid ""
+"Image too large: %1$s. Maximum: %2$s. Reduce it before uploading to keep "
+"pages fast."
+msgstr ""
+"Imagem grande demais: %1$s. Máximo: %2$s. Reduza antes de enviar para manter "
+"as páginas rápidas."
+
+#: src/Image/ImageValidator.php:133 src/View/ConfigViewModel.php:157
+#, php-format
+msgid ""
+"Below the recommended size (%1$s): it may look blurry on Full HD and high-"
+"density screens."
+msgstr ""
+"Abaixo do tamanho recomendado (%1$s): pode ficar borrada em telas Full HD e "
+"de alta densidade."
+
+#: src/Image/ImageValidator.php:150 src/View/ConfigViewModel.php:158
+#, php-format
+msgid "The image must be square (same width and height). Received: %s."
+msgstr "A imagem precisa ser quadrada (mesma largura e altura). Recebida: %s."
+
+#: src/Image/ImageValidator.php:154 src/View/ConfigViewModel.php:159
+msgid "The image is not square: empty margins will appear around it."
+msgstr "A imagem não é quadrada: aparecerão margens vazias ao redor."
+
+#: src/Image/ImageValidator.php:157 src/View/ConfigViewModel.php:160
+msgid ""
+"Landscape (horizontal) image expected: large parts will be cropped on wide "
+"screens."
+msgstr ""
+"Esperada imagem em paisagem (horizontal): grande parte será recortada em "
+"telas largas."
+
+#: src/Image/ImageValidator.php:160 src/View/ConfigViewModel.php:161
+msgid ""
+"Portrait (vertical) image expected: large parts will be cropped on phones."
+msgstr ""
+"Esperada imagem em retrato (vertical): grande parte será recortada nos "
+"celulares."
+
+#: src/Image/ImageValidator.php:171 src/View/ConfigViewModel.php:162
+#, php-format
+msgid ""
+"Aspect ratio differs from the ideal %s: edges will be cropped to fill the "
+"screen."
+msgstr ""
+"Proporção diferente da ideal %s: as bordas serão recortadas para preencher a "
+"tela."
+
+#: src/Image/ImageValidator.php:182
+#, php-format
+msgid "File exceeds the server upload limit (%s)."
+msgstr "O arquivo excede o limite de upload do servidor (%s)."
+
+#: src/Image/ImageValidator.php:185
+msgid "The upload was interrupted. Please try again."
+msgstr "O envio foi interrompido. Tente novamente."
+
+#: src/Image/ImageValidator.php:188
+msgid ""
+"The server could not store the uploaded file. Contact the administrator."
+msgstr ""
+"O servidor não conseguiu armazenar o arquivo enviado. Contate o "
+"administrador."
+
+#: src/Image/ImageValidator.php:189
+msgid "Upload failed."
+msgstr "Falha no envio."
+
+#: src/Menu.php:25 templates/config.html.twig:19
+msgid "Custom Branding"
+msgstr "Personalização da marca"
+
+#: src/View/ConfigViewModel.php:69
+msgid "Logos"
+msgstr "Logos"
+
+#: src/View/ConfigViewModel.php:70
+msgid "Login screen background"
+msgstr "Fundo da tela de login"
+
+#: src/View/ConfigViewModel.php:71
+msgid "Browser"
+msgstr "Navegador"
+
+#: src/View/ConfigViewModel.php:90
+msgid "Recommended"
+msgstr "Recomendado"
+
+#: src/View/ConfigViewModel.php:91
+msgid "Minimum"
+msgstr "Mínimo"
+
+#: src/View/ConfigViewModel.php:92
+msgid "Maximum"
+msgstr "Máximo"
+
+#: src/View/ConfigViewModel.php:93
+msgid "File size"
+msgstr "Arquivo"
+
+#: src/View/ConfigViewModel.php:93
+#, php-format
+msgid "up to %s"
+msgstr "até %s"
+
+#: src/View/ConfigViewModel.php:94
+msgid "Formats"
+msgstr "Formatos"
+
+#: src/View/ConfigViewModel.php:95
+msgid "Displayed at"
+msgstr "Exibido em"
+
+#: src/View/ConfigViewModel.php:148
+msgid "Compatible"
+msgstr "Compatível"
+
+#: src/View/ConfigViewModel.php:149
+msgid "Compatible, with warnings"
+msgstr "Compatível, com avisos"
+
+#: src/View/ConfigViewModel.php:150
+msgid "Incompatible — will not be saved"
+msgstr "Incompatível — não será salva"
+
+#: src/View/ConfigViewModel.php:151
+msgid "Checking image…"
+msgstr "Verificando imagem…"
+
+#: src/View/ConfigViewModel.php:163
+#, php-format
+msgid ""
+"The selected images total %1$s, above the server limit per save (%2$s). Save "
+"in steps."
+msgstr ""
+"As imagens selecionadas somam %1$s, acima do limite do servidor por envio "
+"(%2$s). Salve em etapas."
+
+#: src/View/ConfigViewModel.php:164
+#, php-format
+msgid "Low contrast (%s:1). WCAG recommends at least 4.5:1."
+msgstr "Contraste baixo (%s:1). A WCAG recomenda no mínimo 4,5:1."
+
+#: src/View/ConfigViewModel.php:165
+#, php-format
+msgid "Good contrast (%s:1)."
+msgstr "Bom contraste (%s:1)."
+
+#: src/View/ConfigViewModel.php:166
+msgid "Will be removed when saving (GLPI default restored)."
+msgstr "Será removida ao salvar (volta o padrão do GLPI)."
+
+#: src/View/ConfigViewModel.php:167
+msgid "New image selected — not saved yet."
+msgstr "Nova imagem selecionada — ainda não salva."
+
+#: templates/config.html.twig:34
+msgid ""
+"Images keep their original quality (they are not resized or recompressed). "
+"Each field shows the recommended, minimum and maximum size; files are "
+"checked as soon as they are selected."
+msgstr ""
+"As imagens mantêm a qualidade original (não são redimensionadas nem "
+"recomprimidas). Cada campo mostra o tamanho recomendado, mínimo e máximo; os "
+"arquivos são verificados assim que selecionados."
+
+#: templates/config.html.twig:36
+msgid "Server limits:"
+msgstr "Limites do servidor:"
+
+#: templates/config.html.twig:37
+msgid "per file"
+msgstr "por arquivo"
+
+#: templates/config.html.twig:38
+msgid "per save (all files together)"
+msgstr "por envio (todos os arquivos juntos)"
+
+#: templates/config.html.twig:50
+msgid "Identity"
+msgstr "Identidade"
+
+#: templates/config.html.twig:54
+msgid "Application name"
+msgstr "Nome da aplicação"
+
+#: templates/config.html.twig:58
+msgid ""
+"Browser tab title, e-mail notification footer and two-factor authentication "
+"label. Empty = \"GLPI\"."
+msgstr ""
+"Título da aba do navegador, rodapé das notificações por e-mail e rótulo da "
+"autenticação em dois fatores. Vazio = \"GLPI\"."
+
+#: templates/config.html.twig:61
+msgid "Login screen note"
+msgstr "Aviso na tela de login"
+
+#: templates/config.html.twig:64
+msgid "e.g. IT Service Desk — ext. 1234"
+msgstr "ex.: Central de Serviços de TI — ramal 1234"
+
+#: templates/config.html.twig:66
+msgid ""
+"Short plain text shown below the login button (support contact, notice...)."
+msgstr ""
+"Texto curto exibido abaixo do botão de login (contato do suporte, aviso...)."
+
+#: templates/config.html.twig:87
+msgid "Background darkening"
+msgstr "Escurecimento do fundo"
+
+#: templates/config.html.twig:93
+msgid "Improves the readability of texts over light photos."
+msgstr "Melhora a leitura dos textos sobre fotos claras."
+
+#: templates/config.html.twig:102
+msgid "Colors"
+msgstr "Cores"
+
+#: templates/config.html.twig:107
+msgid "Apply brand colors"
+msgstr "Aplicar cores da marca"
+
+#: templates/config.html.twig:114
+msgid "Primary color (buttons, links)"
+msgstr "Cor principal (botões, links)"
+
+#: templates/config.html.twig:115
+msgid "Menu background"
+msgstr "Fundo do menu"
+
+#: templates/config.html.twig:116
+msgid "Menu text"
+msgstr "Texto do menu"
+
+#: templates/config.html.twig:129
+msgid ""
+"Overrides the colors of every GLPI palette. Disable to let each user keep "
+"the palette chosen in their preferences."
+msgstr ""
+"Substitui as cores de todas as paletas do GLPI. Desative para que cada "
+"usuário mantenha a paleta escolhida nas preferências."
+
+#: templates/config.html.twig:138
+msgid "Preview"
+msgstr "Prévia"
+
+#: templates/config.html.twig:143
+msgid "Login"
+msgstr "Login"
+
+#: templates/config.html.twig:144
+msgid "Mobile"
+msgstr "Celular"
+
+#: templates/config.html.twig:145
+msgid "Menu"
+msgstr "Menu"
+
+#: templates/config.html.twig:146
+msgid "Tab"
+msgstr "Aba"
+
+#: templates/config.html.twig:172
+msgid ""
+"Full HD / large monitors (16:9). The background is cropped to cover the "
+"screen."
+msgstr ""
+"Full HD / monitores grandes (16:9). O fundo é recortado para cobrir a tela."
+
+#: templates/config.html.twig:190
+msgid "Phone in portrait. Uses the mobile background when provided."
+msgstr "Celular na vertical. Usa o fundo de celular quando enviado."
+
+#: templates/config.html.twig:210
+msgid ""
+"Left: expanded menu. Middle: collapsed menu. Colors apply only when enabled."
+msgstr ""
+"Esquerda: menu expandido. Centro: menu recolhido. As cores só se aplicam "
+"quando ativadas."
+
+#: templates/config.html.twig:218
+msgid "Home"
+msgstr "Início"
+
+#: templates/config.html.twig:224
+msgid "Home screen shortcut (phones/tablets)."
+msgstr "Atalho na tela inicial (celulares/tablets)."
+
+#: templates/config.html.twig:237
+msgid "Remove ALL customizations and restore the GLPI default look?"
+msgstr "Remover TODAS as personalizações e restaurar o visual padrão do GLPI?"
+
+#: templates/config.html.twig:238
+msgid "Restore defaults"
+msgstr "Restaurar padrão"
+
+#: templates/config.html.twig:241
+msgid "Unsaved changes"
+msgstr "Alterações não salvas"
+
+#: templates/config.html.twig:243
+msgid "Save"
+msgstr "Salvar"
+
+#: templates/config.html.twig:266
+msgid "GLPI default"
+msgstr "Padrão do GLPI"
+
+#: templates/config.html.twig:285
+msgid "Current:"
+msgstr "Atual:"
+
+#: templates/config.html.twig:295
+msgid "Remove (use GLPI default)"
+msgstr "Remover (usar o padrão do GLPI)"

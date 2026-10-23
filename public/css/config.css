@@ -1,0 +1,240 @@
+/**
+ * @author  F4tjs <https://github.com/f4tjs>
+ * @license GPL-3.0-or-later
+ *
+ * Custom Branding — estilos da tela de configuração e da prévia.
+ *
+ * Usa as variáveis do Tabler/GLPI (--tblr-*), então acompanha as paletas
+ * claras e escuras automaticamente. Mobile-first: regras base para celular,
+ * media queries ampliam para telas maiores.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Variáveis da prévia (atualizadas pelo config.js)                    */
+/* ------------------------------------------------------------------ */
+.cb-config {
+    --cb-primary: var(--tblr-primary);
+    --cb-primary-fg: var(--tblr-primary-fg, #fff);
+    --cb-menu-bg: var(--glpi-mainmenu-bg, #2f3f64);
+    --cb-menu-fg: var(--glpi-mainmenu-fg, #f4f6fa);
+    --cb-overlay: 0;
+    --cb-checker: repeating-conic-gradient(rgba(127, 127, 127, .18) 0 25%, transparent 0 50%) 0 0 / 14px 14px;
+
+    padding-bottom: 5rem; /* espaço para a barra de ações fixa */
+}
+
+/* ------------------------------------------------------------------ */
+/* Campo de imagem                                                     */
+/* ------------------------------------------------------------------ */
+.cb-thumb {
+    width: 100%;
+    height: 96px;
+    border: 1px dashed var(--tblr-border-color);
+    border-radius: var(--tblr-border-radius);
+    background: var(--cb-checker); /* xadrez revela transparência */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.cb-thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.cb-thumb--photo img { width: 100%; height: 100%; object-fit: cover; }
+/* Logos do menu são vistos sobre a cor do menu (geralmente escura). */
+.cb-thumb--menu { background: var(--cb-menu-bg); border-style: solid; }
+.cb-thumb--menu .cb-thumb__empty { color: var(--cb-menu-fg); }
+.cb-thumb__empty { font-size: .75rem; color: var(--tblr-secondary); padding: .25rem; text-align: center; }
+
+@media (min-width: 576px) {
+    .cb-thumb { width: 150px; }
+}
+
+.cb-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
+    font-size: .75rem;
+}
+.cb-specs > div {
+    display: inline-flex;
+    gap: .25rem;
+    padding: .125rem .5rem;
+    border-radius: 999px;
+    background: var(--tblr-bg-surface-secondary);
+    border: 1px solid var(--tblr-border-color);
+}
+.cb-specs dt { font-weight: 400; color: var(--tblr-secondary); }
+.cb-specs dd { margin: 0; font-weight: 600; }
+.cb-specs__item--strong { border-color: var(--tblr-primary) !important; }
+
+.cb-file { flex: 1 1 16rem; min-width: 0; }
+
+.cb-status:empty { display: none; }
+.cb-status ul { margin: .25rem 0 0; padding-left: 1.1rem; }
+
+/* ------------------------------------------------------------------ */
+/* Barra de ações fixa                                                 */
+/* ------------------------------------------------------------------ */
+.cb-actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    margin-top: 1rem;
+    padding: .75rem 1rem;
+    background: var(--tblr-bg-surface);
+    border: 1px solid var(--tblr-border-color);
+    border-radius: var(--tblr-border-radius);
+    box-shadow: 0 -.25rem 1rem rgba(0, 0, 0, .08);
+}
+@media (max-width: 575.98px) {
+    /* Celular: os dois botões lado a lado, ocupando pouca altura. */
+    .cb-actions { padding: .5rem; }
+    .cb-actions > div { flex-wrap: nowrap !important; }
+    .cb-actions > div > *, .cb-actions .btn { flex: 1 1 0; white-space: nowrap; }
+    #cb-dirty { display: none !important; }
+}
+
+/* ------------------------------------------------------------------ */
+/* Prévia                                                              */
+/* ------------------------------------------------------------------ */
+@media (min-width: 1200px) {
+    /* No desktop a prévia acompanha a rolagem do formulário. */
+    .cb-preview-card { position: sticky; top: 1rem; }
+}
+
+.cb-screen {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--tblr-border-radius);
+    border: 1px solid var(--tblr-border-color);
+    background-color: #f6f8fb; /* fundo padrão do login do GLPI */
+    background-position: center;
+    background-size: cover;
+    container-type: inline-size; /* elementos internos escalam com a prévia */
+}
+.cb-screen::before { /* escurecimento */
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, var(--cb-overlay));
+}
+.cb-screen--desktop { aspect-ratio: 16 / 9; }
+.cb-screen--mobile { aspect-ratio: 9 / 19.5; border: 0; border-radius: 1.4rem; }
+
+.cb-phone {
+    width: min(240px, 70%);
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 2rem;
+    background: #1f2937;
+    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .25);
+}
+
+.cb-login {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4cqw;
+}
+.cb-screen--desktop .cb-login { gap: 1.5cqw; }
+
+.cb-login__logo {
+    display: block;
+    width: 22cqw;
+    aspect-ratio: 200 / 110;
+    background: center / contain no-repeat;
+}
+.cb-screen--mobile .cb-login__logo { width: 55cqw; }
+
+.cb-login__card {
+    width: 32cqw;
+    padding: 2cqw;
+    border-radius: .6cqw;
+    background: #fff;
+    box-shadow: 0 .5cqw 2cqw rgba(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+    gap: 1cqw;
+}
+.cb-screen--mobile .cb-login__card { width: 84cqw; padding: 5cqw; gap: 3cqw; border-radius: 2cqw; }
+
+.cb-login__note {
+    font-size: max(7px, 1.1cqw);
+    color: #667085;
+    text-align: center;
+    line-height: 1.2;
+    word-break: break-word;
+}
+.cb-screen--mobile .cb-login__note { font-size: max(7px, 3.2cqw); }
+.cb-login__note:empty { display: none; }
+
+.cb-line { height: 1cqw; min-height: 4px; border-radius: 99px; background: #e5e7eb; }
+.cb-line--title { width: 60%; margin: 0 auto; background: #cbd2dc; }
+.cb-btn { height: 2cqw; min-height: 8px; border-radius: .4cqw; background: var(--cb-primary); }
+.cb-screen--mobile .cb-btn { height: 7cqw; }
+.cb-screen--mobile .cb-line { height: 3cqw; }
+
+/* Aplicação com menu lateral */
+.cb-app {
+    display: flex;
+    height: 220px;
+    overflow: hidden;
+    border-radius: var(--tblr-border-radius);
+    border: 1px solid var(--tblr-border-color);
+    background: var(--tblr-bg-surface-secondary);
+}
+.cb-app__menu {
+    flex: 0 0 130px;
+    padding: 12px 10px;
+    background: var(--cb-menu-bg);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.cb-app__menu--reduced { flex-basis: 56px; border-left: 1px solid rgba(255, 255, 255, .15); align-items: center; }
+.cb-app__logo {
+    display: block;
+    width: 100px;
+    height: 55px;
+    margin: 0 auto 6px;
+    background: center / contain no-repeat;
+}
+.cb-app__logo--reduced { width: 40px; height: 40px; margin-bottom: 14px; }
+.cb-app__item { height: 8px; border-radius: 99px; background: var(--cb-menu-fg); opacity: .7; width: 100%; }
+.cb-app__menu--reduced .cb-app__item { width: 18px; height: 18px; border-radius: 4px; opacity: .55; }
+.cb-app__main { flex: 1; padding: 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.cb-app__main .cb-line { height: 8px; }
+.cb-app__main .cb-btn { width: 90px; height: 26px; border-radius: 4px; }
+
+/* Aba do navegador */
+.cb-browser {
+    border-radius: var(--tblr-border-radius);
+    border: 1px solid var(--tblr-border-color);
+    background: #dee1e6;
+    overflow: hidden;
+    color: #202124;
+}
+.cb-browser__tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 260px;
+    margin: 8px 0 0 8px;
+    padding: 8px 12px;
+    background: #fff;
+    border-radius: 8px 8px 0 0;
+    font-size: 12px;
+}
+.cb-browser__icon { width: 16px; height: 16px; object-fit: contain; flex: none; }
+.cb-browser__title { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cb-browser__bar { height: 34px; background: #fff; }
+.cb-touch-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    object-fit: cover;
+    background: var(--cb-checker);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+}

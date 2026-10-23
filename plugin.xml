@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Metadados no formato do catálogo de plugins do GLPI (plugins.glpi-project.org). -->
+<root>
+    <name>Custom Branding</name>
+    <key>custombranding</key>
+    <state>stable</state>
+    <logo>https://raw.githubusercontent.com/f4tjs/glpi-plugin-custombranding/main/docs/logo.png</logo>
+    <description>
+        <short>
+            <en>Customize GLPI branding: logos, favicon, login background, colors and application name.</en>
+            <pt>Personalize a marca do GLPI: logos, favicon, fundo do login, cores e nome da aplicação.</pt>
+        </short>
+        <long>
+            <en><![CDATA[
+Custom Branding applies your organization's visual identity to GLPI 12 without modifying any core file.
+Login and side menu logos, favicon, login background for desktop and mobile, brand colors, application name
+and a login notice. Images are validated in the browser and on the server (real type, size, dimensions,
+aspect ratio), keep their original quality and can be previewed live before saving.
+            ]]></en>
+            <pt><![CDATA[
+O Custom Branding aplica a identidade visual da sua organização ao GLPI 12 sem alterar nenhum arquivo do núcleo.
+Logos do login e do menu lateral, favicon, fundo do login para computador e celular, cores da marca, nome da
+aplicação e aviso no login. As imagens são validadas no navegador e no servidor (tipo real, peso, dimensões,
+proporção), mantêm a qualidade original e têm prévia ao vivo antes de salvar.
+            ]]></pt>
+        </long>
+    </description>
+    <homepage>https://github.com/f4tjs/glpi-plugin-custombranding</homepage>
+    <download>https://github.com/f4tjs/glpi-plugin-custombranding/releases</download>
+    <issues>https://github.com/f4tjs/glpi-plugin-custombranding/issues</issues>
+    <readme>https://github.com/f4tjs/glpi-plugin-custombranding/blob/main/README.md</readme>
+    <authors>
+        <author>F4tjs</author>
+    </authors>
+    <versions>
+        <version>
+            <num>1.0.0</num>
+            <compatibility>~12.0.0</compatibility>
+            <download_url>https://github.com/f4tjs/glpi-plugin-custombranding/releases/download/v1.0.0/custombranding-1.0.0.zip</download_url>
+        </version>
+    </versions>
+    <langs>
+        <lang>en_GB</lang>
+        <lang>pt_BR</lang>
+    </langs>
+    <license>GPL v3+</license>
+    <tags>
+        <en>
+            <tag>branding</tag>
+            <tag>theme</tag>
+            <tag>logo</tag>
+            <tag>login</tag>
+            <tag>white-label</tag>
+        </en>
+        <pt>
+            <tag>marca</tag>
+            <tag>tema</tag>
+            <tag>logo</tag>
+            <tag>login</tag>
+            <tag>personalização</tag>
+        </pt>
+    </tags>
+    <screenshots>
+        <screenshot>https://raw.githubusercontent.com/f4tjs/glpi-plugin-custombranding/main/docs/screenshots/config_desktop.jpg</screenshot>
+        <screenshot>https://raw.githubusercontent.com/f4tjs/glpi-plugin-custombranding/main/docs/screenshots/login_fullhd.jpg</screenshot>
+        <screenshot>https://raw.githubusercontent.com/f4tjs/glpi-plugin-custombranding/main/docs/screenshots/login_phone.jpg</screenshot>
+    </screenshots>
+</root>

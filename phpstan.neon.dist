@@ -1,0 +1,18 @@
+# Análise estática (PHPStan). Requer o GLPI 12: com o plugin instalado em
+# <glpi>/plugins/custombranding, execute na raiz do plugin:
+#   phpstan analyse
+parameters:
+    level: 8
+    paths:
+        - setup.php
+        - hook.php
+        - src
+    bootstrapFiles:
+        - ../../vendor/autoload.php
+        - ../../src/autoload/constants.php
+        - ../../src/autoload/misc-functions.php
+        - ../../src/autoload/i18n.php
+        - tools/phpstan-bootstrap.php
+    scanDirectories:
+        - ../../src
+        - ../../inc

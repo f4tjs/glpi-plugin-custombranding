@@ -9,7 +9,6 @@ permissions:
   contents: read
 
 env:
-  GLPI_VERSION: "12.0.0"
   PHPSTAN_VERSION: "2.1.17"
 
 jobs:
@@ -24,7 +23,7 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          tools: none
+          tools: composer
       - name: PHP syntax
         run: find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
       - name: composer.json
@@ -39,8 +38,13 @@ jobs:
         run: for f in public/js/*.js; do node --check "$f"; done
 
   phpstan:
-    name: PHPStan (GLPI ${{ env.GLPI_VERSION }})
+    name: PHPStan (GLPI ${{ matrix.glpi }})
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        glpi: ["12.0.0"]
+    env:
+      GLPI_VERSION: ${{ matrix.glpi }}
     steps:
       - name: Download GLPI
         run: |
